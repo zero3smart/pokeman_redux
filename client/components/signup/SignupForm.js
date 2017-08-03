@@ -1,6 +1,7 @@
 import React from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
+import axios from 'axios';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class SignupForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    axios.post('/api/users', { user: this.state });
   }
 
   render() {
