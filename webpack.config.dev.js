@@ -2,7 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 
 export default {
-  devtools: 'eval-source-map',
+  devtools: 'inline-sourcemap',
   entry: [
     'webpack-hot-middleware/client',
     path.join(__dirname, '/client/index.js')
@@ -11,6 +11,10 @@ export default {
     path: '/',
     filename: 'bundle.js',
     publicPath: '/'
+  },
+  devServer: {
+    hot: true,
+    inline: true
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
