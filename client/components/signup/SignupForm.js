@@ -2,6 +2,7 @@ import React from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
+import validateInput from '../../../server/shared/validations/signup';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -24,14 +25,29 @@ class SignupForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e) {
-    this.setState({ errors: {}, isLoading: true });
-    e.preventDefault();
-    this.props.userSignupRequest(this.state).then((res) => {
-        this.setState({ errors: res.data, isLoading: false });
-      }, (err) => {
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
 
-    });
+    if (!isValid) {
+      this.setState({ errors });
+    }
+
+    return isValid;
+
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    if (this.isValid()) {
+      this.setState({ errors: {}, isLoading: true });
+
+      this.props.userSignupRequest(this.state).then((res) => {
+          this.setState({ errors: res.data, isLoading: false });
+        }, (err) => {
+
+      });
+    }
   }
 
   render() {
