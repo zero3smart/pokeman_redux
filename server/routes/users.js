@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
   const { errors, isValid } = validateInput(req.body);
 
   if (isValid) {
-    res.json({ success: "true" });
+    res.json({ success: true });
   } else {
     res.status(400).json(errors);
   }
