@@ -52,7 +52,7 @@ class SignupForm extends React.Component {
 
         this.context.router.push('/');
         }, (err) => {
-          this.setState({ errors: res.response.data, isLoading: false });
+          this.setState({ errors: err.response.data, isLoading: false });
       });
     }
   }
