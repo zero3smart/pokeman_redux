@@ -1,4 +1,4 @@
-import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from '../actions/types';
+import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE, DELETE_FLASH_ALL_MESSAGE } from '../actions/types';
 import shortid from 'shortid';
 import findIndex from 'lodash/findIndex';
 
@@ -22,6 +22,8 @@ export default (state = [], action = {}) => {
         ];
       }
       return state;
+    case DELETE_FLASH_ALL_MESSAGE:
+      return [];
     default: return state;
   }
 }

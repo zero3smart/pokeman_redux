@@ -9,8 +9,6 @@ let router = express.Router();
 router.post('/', (req, res) => {
   const { identifier, password } = req.body;
 
-  console.log(req.body);
-
   User.query({
     where: { username: identifier },
     orWhere: { email: identifier }
